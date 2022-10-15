@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const db = require("../models");
 
 const postId = "634afb90d2c7c83040574504"
@@ -13,3 +14,6 @@ db.Comment.create([{
     comment: "Test Comment",
     post: postId
 }])
+.then (() => {
+    mongoose.connection.close(); 
+});

@@ -48,7 +48,26 @@ router.post('/', async (req, res) => {
 })
 
 //edit comment
-
+router.put('/:id', async (req, res) => {
+    try {
+        await Comment.findByIdAndUpdate(req.params.id, req.body,
+            {runValidators: true});
+        console.log('Updated comment at ID', req.params.id);
+        res.status(200).json({
+            message: `Updated post at ${req.params.id}`
+    });
+} catch (err) {
+    if (err.name === 'ValidationError') {
+        let errorMessage = 'Validation Error(s)'
+    }
+    for (let field in err.errors) {
+        errorMessage += `${field} was ${err.errors[field].value}. `
+        errorMessage += `${err.errors[field].message} `
+    }
+    console.log(errorMessage);
+    res.status(500).json(errorMessage)
+}
+})
 
 //delete comment
 router.delete('/:id', async (req, res) => {

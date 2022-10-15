@@ -1,6 +1,5 @@
 //dependencies
 const express = require("express");
-const mongoose = require("mongoose");
 
 //configuration
 require("dotenv").config({path: ".env"});
@@ -11,6 +10,10 @@ app.use(express.json())
 
 app.use('/comments', require('./controllers/comment-controller'));
 
+//import controllers and use
+
+// /posts
+app.use("/posts", require("./controllers/posts-controller"));
 
 //listen to port
 app.listen(PORT, () => {
