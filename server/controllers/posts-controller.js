@@ -77,7 +77,8 @@ router.delete("/:id", async (req, res) => {
             message: `Deleted post and ${deletedComments.deletedCount} comments`
         });
     } catch (err) {
-
+        console.log(err);
+        res.status(500).json(err);
     }
 })
 
