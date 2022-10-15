@@ -1,6 +1,6 @@
 const db = require("../models");
 
-const postId = "6348524ad27bef476d25ac40"
+const postId = "634aebd93e42dcc66c3c250e"
 
 //seed comments
 //run seed posts first, and replace id values with ids from new posts
