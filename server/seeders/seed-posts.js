@@ -16,3 +16,6 @@ db.Post.create([{
     sport: "Basketball",
     post: "Test Content 3" 
 }])
+.then (() => {
+    mongoose.connection.close(); 
+});

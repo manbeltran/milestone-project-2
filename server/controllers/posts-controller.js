@@ -67,7 +67,20 @@ router.put("/:id", async (req, res) => {
     }
 })
 
-//DELETE a post
+//DELETE a post and all related comments
+router.delete("/:id", async (req, res) => {
+    try {
+        await Post.findByIdAndDelete(req.params.id);
+        const deletedComments = await Comment.deleteMany({post: req.params.id});
+        console.log(`Deleted post and ${deletedComments.deletedCount} comments`);
+        res.status(200).json({
+            message: `Deleted post and ${deletedComments.deletedCount} comments`
+        });
+    } catch (err) {
+
+    }
+})
+
 
 //export
 module.exports = router;

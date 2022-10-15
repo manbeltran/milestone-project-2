@@ -1,6 +1,5 @@
 //dependencies
 const express = require("express");
-const mongoose = require("mongoose");
 
 //configuration
 require("dotenv").config({path: ".env"});
