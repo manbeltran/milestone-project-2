@@ -6,38 +6,10 @@ const mongoose = require("mongoose");
 require("dotenv").config({path: ".env"});
 const PORT = process.env.PORT;
 const app = express();
+app.use(express.json())
 
-//testing routes
-//find all bakers + breads
-const db = require("./models");
-const { Post } = db;
-app.get("/", (req, res) => {
-    Post.find()
-        .populate("comments")
-        .then(foundPosts => {
-            res.json(foundPosts);
-        })
-});
 
-//test delete Post + comments
-app.get("/:id", (req, res) => {
-    Post.findById(req.params.id)
-        .populate("comments")
-        .then(foundPost => {
-            if (foundPost.comments) {
-                foundPost.comments.forEach(comment => {
-                    comment.remove()
-                    .then(deleteStatus => {
-                        console.log("DELETING COMMENT:", deleteStatus);
-                    })
-                })
-            }
-            foundPost.remove()
-            .then(deleteStatus => {
-                console.log("DELETING POST:", deleteStatus);
-            })
-        })
-})
+app.use('/comments', require('./controllers/comment-controller'));
 
 
 //listen to port
