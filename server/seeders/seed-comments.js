@@ -17,3 +17,4 @@ db.Comment.create([{
 .then (() => {
     mongoose.connection.close(); 
 });
+
